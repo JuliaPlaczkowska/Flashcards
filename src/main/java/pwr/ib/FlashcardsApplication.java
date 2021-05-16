@@ -8,7 +8,6 @@ public class FlashcardsApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(FlashcardsApplication.class, args);
-        System.out.println("Flashcards");
     }
 
 }

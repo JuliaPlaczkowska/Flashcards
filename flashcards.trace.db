@@ -1,0 +1,4 @@
+2021-05-16 21:37:47 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Błąd składniowy w wyrażeniu SQL "ID[*] USER_DTO"; oczekiwano "INSERT"
+Syntax error in SQL statement "ID[*] USER_DTO"; expected "INSERT"; SQL statement:
+ID USER_DTO [42001-200]
