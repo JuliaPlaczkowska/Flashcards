@@ -10,12 +10,12 @@ import pwr.ib.repository.UserRepo;
 import java.util.Optional;
 
 @Service
-public class UserMenager implements UserDetailsService {
+public class UserManager implements UserDetailsService {
 
     private UserRepo userRepo;
 
     @Autowired
-    public UserMenager(UserRepo userRepo){
+    public UserManager(UserRepo userRepo){
         this.userRepo = userRepo;
     }
 
