@@ -34,19 +34,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers(HttpMethod.GET, "api/user/all").hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET, "api/user").hasAnyRole("ADMIN", "CUSTOMER")
-                .antMatchers(HttpMethod.POST, "api/admin/user").hasAnyRole("ADMIN", "CUSTOMER")
-                .antMatchers(HttpMethod.PUT, "api/admin/user").hasRole("ADMIN")
+                
+                .antMatchers("/api/admin/**").hasRole("ADMIN")
+                .antMatchers("/api/**").hasAnyRole("ADMIN", "CUSTOMER")
 
-                .antMatchers(HttpMethod.GET,"api/game/all").hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET,"api/game").hasAnyRole("ADMIN", "CUSTOMER")
-                .antMatchers(HttpMethod.GET,"api/game/user").hasAnyRole("ADMIN", "CUSTOMER")
-                .antMatchers(HttpMethod.POST, "api/game").hasRole("CUSTOMER")
-                .antMatchers(HttpMethod.PUT, "api/admin/game").hasRole("ADMIN")
-
-
-                .antMatchers("/console/**").permitAll()
+                .antMatchers("/h2-console/**").permitAll()
                 .anyRequest().authenticated().and().httpBasic()
                 .and().csrf().disable()
 
