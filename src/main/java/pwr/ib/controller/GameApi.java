@@ -4,11 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.web.bind.annotation.*;
 import pwr.ib.service.Game;
+import pwr.ib.service.SetOfFlashcards;
 import pwr.ib.service.UserDto;
 import pwr.ib.service.manager.GameManager;
 import pwr.ib.service.manager.UserManager;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Optional;
 
 @RestController
@@ -43,6 +45,22 @@ public class GameApi {
         for(Game g:games)
             if(g.getUserDto().getId().equals(user.getId()))
                 out.add(g);
+
+        return out;
+    }
+
+    @GetMapping("api/game/set")
+    public Iterable<Game> getGamesBySetId(Long index) {
+
+        Iterable<Game> games =  this.games.findAll();
+        ArrayList<Game> out = new ArrayList<>();
+
+        for(Game g : games){
+            if(g.getSetOfFlashcards().getId()==index)
+                out.add(g);
+        }
+
+        Collections.sort(out);
 
         return out;
     }

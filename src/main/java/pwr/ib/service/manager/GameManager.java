@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pwr.ib.repository.GameRepo;
 import pwr.ib.service.Game;
+import pwr.ib.service.UserDto;
 
 import java.util.Optional;
 

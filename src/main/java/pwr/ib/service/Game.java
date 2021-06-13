@@ -4,10 +4,11 @@ import org.apache.tomcat.jni.Local;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Comparator;
 
 @Entity
 @Table(name = Game.TABLE_NAME)
-public class Game {
+public class Game implements Comparable{
 
     public static final String TABLE_NAME="game";
 
@@ -32,6 +33,15 @@ public class Game {
         this.setOfFlashcards = setOfFlashcards;
         this.userDto=userDto;
         this.ranking = false;
+    }
+
+    public Game(String gameMode, int points, SetOfFlashcards setOfFlashcards, UserDto userDto, Boolean ranking) {
+        this.date = LocalDateTime.now();
+        this.points =points;
+        this.gameMode = gameMode;
+        this.ranking = ranking;
+        this.setOfFlashcards = setOfFlashcards;
+        this.userDto=userDto;
     }
 
     public Game(Long id, LocalDateTime date, int points, String gameMode, boolean ranking, SetOfFlashcards setOfFlashcards, UserDto userDto) {
@@ -131,5 +141,11 @@ public class Game {
 
     public void setUserDto(UserDto userDto) {
         this.userDto = userDto;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Game game2 = (Game) o;
+        return -(Integer.compare(this.getPoints(), game2.getPoints()));
     }
 }

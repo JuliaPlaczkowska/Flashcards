@@ -66,6 +66,9 @@ GET: localhost:8008/api/game/user/current
 //get games by user id
 GET: localhost:8008/api/game/user?index=1
 
+//get games by set id & sort descending
+GET: localhost:8008/api/game/set?index=1
+
 DELETE: localhost:8008/api/admin/game
     {
         "id": 1,
@@ -110,7 +113,6 @@ DELETE: localhost:8008/api/admin/game
 
 POST: localhost:8008/api/game
     {
-        "date": "2021-06-13T13:45:21.827245",
         "points": 10,
         "gameMode": "flashcards",
         "ranking": true,
