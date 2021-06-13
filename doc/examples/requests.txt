@@ -1,0 +1,150 @@
+------------------------------------------------------------------------------------------------------------------------
+USER
+------------------------------------------------------------------------------------------------------------------------
+
+// get current (logged) user as UserDto
+GET: localhost:8008/api/user/hello
+
+GET: localhost:8008/api/user/all
+
+GET: localhost:8008/api/user?index=1
+
+POST: localhost:8008/api/user
+{
+    "name": "ania",
+    "password": "123456"
+}
+
+------------------------------------------------------------------------------------------------------------------------
+SET OF FLASHCARDS
+------------------------------------------------------------------------------------------------------------------------
+
+GET: localhost:8008/api/set/all
+
+GET: localhost:8008/api/set?index=1
+
+//post both new set of flashcards and all new flashcards:
+POST: localhost:8008/api/admin/set
+{
+    "category": "IT",
+    "name": "git commands",
+    "flashcards": [
+                    {
+                        "question": "git init",
+                        "answer": "Create a new local repository"
+                    },
+                    {
+                        "question": "git clone /path/to/repository",
+                        "answer": "Create a working copy of a local repository"
+                    },
+                    {
+                         "question": "git pull",
+                         "answer": "Fetch and merge changes on the remote server to your working directory"
+                    }
+    ]
+}
+
+------------------------------------------------------------------------------------------------------------------------
+FLASHCARD
+------------------------------------------------------------------------------------------------------------------------
+
+GET: localhost:8008/api/flashcard/all
+
+GET: localhost:8008/api/flashcard?index=1
+
+------------------------------------------------------------------------------------------------------------------------
+GAME
+------------------------------------------------------------------------------------------------------------------------
+
+GET: localhost:8008/api/game/all
+
+GET: localhost:8008/api/game?index=1
+
+//get games for current user
+GET: localhost:8008/api/game/user/current
+
+//get games by user id
+GET: localhost:8008/api/game/user?index=1
+
+DELETE: localhost:8008/api/admin/game
+    {
+        "id": 1,
+        "date": "2021-06-13T13:45:21.827245",
+        "points": 0,
+        "gameMode": "flashcards",
+        "ranking": false,
+        "setOfFlashcards": {
+            "id": 1,
+            "category": "IT",
+            "name": "linux commands",
+            "flashcards": [
+                {
+                    "id": 1,
+                    "question": "bourne-again shell",
+                    "answer": "bash"
+                },
+                {
+                    "id": 3,
+                    "question": "concatenate and print",
+                    "answer": "cat"
+                },
+                {
+                    "id": 2,
+                    "question": "send to background",
+                    "answer": "bg"
+                },
+                {
+                    "id": 4,
+                    "question": "divide a file into several parts",
+                    "answer": "cut"
+                }
+            ]
+        },
+        "userDto": {
+            "id": 1,
+            "name": "ania",
+            "passwordHash": "$2a$10$BXILXZRu8YeAv6Z89ymBQObJ486skZ3P22apF.GAiI55pmXlO8Sk6",
+            "role": "ROLE_CUSTOMER"
+        }
+    }
+
+POST: localhost:8008/api/game
+    {
+        "date": "2021-06-13T13:45:21.827245",
+        "points": 10,
+        "gameMode": "flashcards",
+        "ranking": true,
+        "setOfFlashcards": {
+            "id": 1,
+            "category": "IT",
+            "name": "linux commands",
+            "flashcards": [
+                {
+                    "id": 1,
+                    "question": "bourne-again shell",
+                    "answer": "bash"
+                },
+                {
+                    "id": 3,
+                    "question": "concatenate and print",
+                    "answer": "cat"
+                },
+                {
+                    "id": 2,
+                    "question": "send to background",
+                    "answer": "bg"
+                },
+                {
+                    "id": 4,
+                    "question": "divide a file into several parts",
+                    "answer": "cut"
+                }
+            ]
+        },
+        "userDto": {
+            "id": 1,
+            "name": "ania",
+            "passwordHash": "$2a$10$BXILXZRu8YeAv6Z89ymBQObJ486skZ3P22apF.GAiI55pmXlO8Sk6",
+            "role": "ROLE_CUSTOMER"
+        }
+    }

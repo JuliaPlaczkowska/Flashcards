@@ -9,7 +9,16 @@ public class User {
     public User(String name, String password, String role) {
         this.name = name;
         this.password = password;
-        this.role = role;
+        if(role != null)
+            this.role = role;
+        else
+            this.role = "ROLE_CUSTOMER";
+    }
+
+    public User(String name, String password) {
+        this.name = name;
+        this.password = password;
+        this.role = "ROLE_CUSTOMER";
     }
 
     public User() {

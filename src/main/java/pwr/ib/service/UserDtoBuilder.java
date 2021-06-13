@@ -12,7 +12,10 @@ public class UserDtoBuilder {
         this.userDto.setName(user.getName());
         PasswordEncoder passwordEncoder = new PasswordEncodingConfig().passwordEncoder();
         this.userDto.setPasswordHash(passwordEncoder.encode(user.getPassword()));
-        this.userDto.setRole(user.getRole());
+        if(user.getRole() != null)
+            this.userDto.setRole(user.getRole());
+        else
+            this.userDto.setRole("ROLE_CUSTOMER");
     }
 
     public UserDto getUserDto() {

@@ -1,4 +1,4 @@
-package pwr.ib.service;
+package pwr.ib.service.manager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -6,6 +6,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import pwr.ib.repository.UserRepo;
+import pwr.ib.service.UserDetailsConfig;
+import pwr.ib.service.UserDto;
 
 import java.util.Optional;
 
@@ -42,5 +44,17 @@ public class UserManager implements UserDetailsService {
                 user =  u;
 
         return  new UserDetailsConfig(user);
+    }
+
+    public UserDto loadUserDtoByUsername(String s) throws UsernameNotFoundException {
+        Iterable<UserDto> users = userRepo.findAll();
+
+        UserDto user = null;
+
+        for(UserDto u:users)
+            if(u.getName().equals(s))
+                user =  u;
+
+        return  user;
     }
 }

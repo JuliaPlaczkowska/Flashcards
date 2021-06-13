@@ -4,8 +4,10 @@ package pwr.ib.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pwr.ib.service.Flashcard;
-import pwr.ib.service.FlashcardManager;
-import pwr.ib.service.Game;
+import pwr.ib.service.SetOfFlashcards;
+import pwr.ib.service.manager.FlashcardManager;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping
@@ -19,12 +21,13 @@ public class FlashcardApi {
     }
 
     @GetMapping("api/flashcard/all")
-    public Iterable<Flashcard> getAllGames() {
+    public Iterable<Flashcard> getAllFlashcards() {
         return flashcards.findAll();
     }
 
-    @PostMapping("api/flashcard")
-    public Flashcard addFlashcard(@RequestBody Flashcard flashcard ){
-        return  flashcards.save(flashcard);
+    @GetMapping("api/flashcard")
+    public Optional<Flashcard> getById(@RequestParam Long index) {
+        return flashcards.findById(index);
     }
+
 }

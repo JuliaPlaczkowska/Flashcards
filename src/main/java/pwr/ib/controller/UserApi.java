@@ -1,11 +1,12 @@
 package pwr.ib.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.web.bind.annotation.*;
 import pwr.ib.service.User;
 import pwr.ib.service.UserDto;
 import pwr.ib.service.UserDtoBuilder;
-import pwr.ib.service.UserManager;
+import pwr.ib.service.manager.UserManager;
 
 import java.util.Optional;
 
@@ -17,6 +18,11 @@ public class UserApi {
 
     @Autowired
     public UserApi(UserManager users) {this.users = users;}
+
+    @GetMapping("api/user/hello")
+    public UserDto getCurrentUserDto(@CurrentSecurityContext(expression="authentication?.name") String username) {
+        return users.loadUserDtoByUsername(username);
+    }
 
     @GetMapping("api/user/all")
     public Iterable<UserDto> getAllUsers() {
@@ -32,11 +38,6 @@ public class UserApi {
     public UserDto addUser(@RequestBody User user ){
         UserDto userDto = new UserDtoBuilder(user).getUserDto();
         return  users.save(userDto);
-    }
-
-    @PutMapping("api/admin/user")
-    public UserDto updateUser(@RequestBody UserDto user ){
-        return  users.save(user);
     }
 
 }

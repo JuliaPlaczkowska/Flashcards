@@ -1,8 +1,9 @@
-package pwr.ib.service;
+package pwr.ib.service.manager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pwr.ib.repository.FlashcardRepo;
+import pwr.ib.service.Flashcard;
 
 import java.util.Optional;
 
