@@ -8,6 +8,7 @@ GET: localhost:8008/api/user/hello
 GET: localhost:8008/api/user/all
 
 GET: localhost:8008/api/user?index=1
+GET: localhost:8008/api/user/byname?username=ania
 
 POST: localhost:8008/api/user
 {
@@ -22,6 +23,7 @@ SET OF FLASHCARDS
 GET: localhost:8008/api/set/all
 
 GET: localhost:8008/api/set?index=1
+
 
 //post both new set of flashcards and all new flashcards:
 POST: localhost:8008/api/admin/set

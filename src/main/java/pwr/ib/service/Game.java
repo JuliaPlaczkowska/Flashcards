@@ -1,6 +1,7 @@
 package pwr.ib.service;
 
 import org.apache.tomcat.jni.Local;
+import pwr.ib.jwt.models.User;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -24,9 +25,9 @@ public class Game implements Comparable{
     private SetOfFlashcards setOfFlashcards;
 
     @ManyToOne
-    private UserDto userDto;
+    private User userDto;
 
-    public Game(String gameMode, SetOfFlashcards setOfFlashcards, UserDto userDto) {
+    public Game(String gameMode, SetOfFlashcards setOfFlashcards, User userDto) {
         this.date = LocalDateTime.now();
         this.points =0;
         this.gameMode = gameMode;
@@ -35,7 +36,7 @@ public class Game implements Comparable{
         this.ranking = false;
     }
 
-    public Game(String gameMode, int points, SetOfFlashcards setOfFlashcards, UserDto userDto, Boolean ranking) {
+    public Game(String gameMode, int points, SetOfFlashcards setOfFlashcards, User userDto, Boolean ranking) {
         this.date = LocalDateTime.now();
         this.points =points;
         this.gameMode = gameMode;
@@ -44,7 +45,7 @@ public class Game implements Comparable{
         this.userDto=userDto;
     }
 
-    public Game(Long id, LocalDateTime date, int points, String gameMode, boolean ranking, SetOfFlashcards setOfFlashcards, UserDto userDto) {
+    public Game(Long id, LocalDateTime date, int points, String gameMode, boolean ranking, SetOfFlashcards setOfFlashcards, User userDto) {
         this.id = id;
         this.date = date;
         this.points = points;
@@ -61,10 +62,6 @@ public class Game implements Comparable{
 
         //TODO
 
-        if(gameMode.equals("flashcards"))
-            new GameplayFlashcards();
-        else
-            new GameplayMemory();
     }
 
     public int showResult(){
@@ -135,11 +132,11 @@ public class Game implements Comparable{
         this.ranking = ranking;
     }
 
-    public UserDto getUserDto() {
+    public User getUserDto() {
         return userDto;
     }
 
-    public void setUserDto(UserDto userDto) {
+    public void setUserDto(User userDto) {
         this.userDto = userDto;
     }
 

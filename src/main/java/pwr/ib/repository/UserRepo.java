@@ -2,10 +2,10 @@ package pwr.ib.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import pwr.ib.service.UserDto;
+import pwr.ib.jwt.models.User;
 
 
 @Repository
-public interface UserRepo extends CrudRepository<UserDto, Long> {
+public interface UserRepo extends CrudRepository<User, Long> {
 
 }

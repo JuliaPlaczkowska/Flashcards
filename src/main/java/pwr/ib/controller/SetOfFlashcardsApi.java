@@ -10,6 +10,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping
+@CrossOrigin
 public class SetOfFlashcardsApi {
 
     private SetOfFlashcardsManager sets;

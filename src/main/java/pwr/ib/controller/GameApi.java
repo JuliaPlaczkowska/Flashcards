@@ -3,9 +3,9 @@ package pwr.ib.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.web.bind.annotation.*;
+import pwr.ib.jwt.models.User;
 import pwr.ib.service.Game;
 import pwr.ib.service.SetOfFlashcards;
-import pwr.ib.service.UserDto;
 import pwr.ib.service.manager.GameManager;
 import pwr.ib.service.manager.UserManager;
 
@@ -15,6 +15,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping
+@CrossOrigin
 public class GameApi {
     private GameManager games;
     private UserManager users;
@@ -22,7 +23,7 @@ public class GameApi {
     @Autowired
     public GameApi(GameManager gameManager, UserManager users){
         this.games = gameManager;
-        this.users = users;
+       this.users = users;
     }
 
     @GetMapping("api/game/all")
@@ -38,7 +39,7 @@ public class GameApi {
     @GetMapping("api/game/user/current")
     public Iterable<Game> getGamesForCurrentUser(@CurrentSecurityContext(expression="authentication?.name")
                                                          String username) {
-        UserDto user = users.loadUserDtoByUsername(username);
+        User user = users.loadUserByUsername2(username);
         Iterable<Game> games =  this.games.findAll();
         ArrayList<Game> out = new ArrayList<>();
 

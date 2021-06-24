@@ -5,56 +5,56 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import pwr.ib.repository.UserRepo;
-import pwr.ib.service.UserDetailsConfig;
-import pwr.ib.service.UserDto;
+import pwr.ib.jwt.models.User;
+import pwr.ib.jwt.repository.UserRepository;
+import pwr.ib.jwt.security.services.UserDetailsServiceImpl;
 
 import java.util.Optional;
 
 @Service
 public class UserManager implements UserDetailsService {
 
-    private UserRepo userRepo;
+    private UserRepository userRepo;
 
     @Autowired
-    public UserManager(UserRepo userRepo){
+    public UserManager(UserRepository userRepo){
         this.userRepo = userRepo;
     }
 
-    public Optional<UserDto> findById(Long id){
+    public Optional<User> findById(Long id){
         return userRepo.findById(id);
     }
 
-    public Iterable<UserDto> findAll(){
+    public Iterable<User> findAll(){
         return userRepo.findAll();
     }
 
-    public UserDto save(UserDto user){
+    public User save(User user){
         return userRepo.save(user);
     }
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        Iterable<UserDto> users = userRepo.findAll();
 
-        UserDto user = null;
+            UserDetailsServiceImpl userDetailsService = new UserDetailsServiceImpl();
 
-        for(UserDto u:users)
-            if(u.getName().equals(s))
-                user =  u;
-
-        return  new UserDetailsConfig(user);
+        return userDetailsService.loadUserByUsername(s);
     }
 
-    public UserDto loadUserDtoByUsername(String s) throws UsernameNotFoundException {
-        Iterable<UserDto> users = userRepo.findAll();
+    public User loadUserByUsername2(String s) throws UsernameNotFoundException {
 
-        UserDto user = null;
+        UserDetailsServiceImpl userDetailsService = new UserDetailsServiceImpl();
 
-        for(UserDto u:users)
-            if(u.getName().equals(s))
-                user =  u;
+        return userDetailsService.loadUserByUsername2(s);
+    }
 
-        return  user;
+    public Long getCount() throws UsernameNotFoundException {
+        Iterable<User> users = userRepo.findAll();
+
+        int i=0;
+        for(User u:users)
+            i++;
+
+        return Long.valueOf(i);
     }
 }
