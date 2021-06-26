@@ -1,11 +1,9 @@
 package pwr.ib.service;
 
-import org.apache.tomcat.jni.Local;
 import pwr.ib.jwt.models.User;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Comparator;
 
 @Entity
 @Table(name = Game.TABLE_NAME)

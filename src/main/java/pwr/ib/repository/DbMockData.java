@@ -51,7 +51,7 @@ public class DbMockData {
 
         User user = new User("ania", "ania@ania.pl", passwordEncoder.encode("123321"));
         user.setRoles(userRoles);
-        User admin = new User("admin", "admin@admin.pl", passwordEncoder.encode("123321"));
+        User admin = new User("admin", "io.flashcardsapp@admin.pl", passwordEncoder.encode("123321"));
         admin.setRoles(adminRoles);
         Flashcard flashcard1 = new Flashcard("bourne-again shell", "bash");
         Flashcard flashcard2 = new Flashcard("send to background", "bg");

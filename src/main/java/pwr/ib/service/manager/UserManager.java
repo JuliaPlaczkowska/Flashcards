@@ -45,7 +45,7 @@ public class UserManager implements UserDetailsService {
 
         UserDetailsServiceImpl userDetailsService = new UserDetailsServiceImpl();
 
-        return userDetailsService.loadUserByUsername2(s);
+        return userDetailsService.loadUserByUsername2(userRepo, s);
     }
 
     public Long getCount() throws UsernameNotFoundException {
