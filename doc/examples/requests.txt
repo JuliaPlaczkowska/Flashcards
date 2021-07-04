@@ -2,9 +2,6 @@
 USER
 ------------------------------------------------------------------------------------------------------------------------
 
-// get current (logged) user as UserDto
-GET: localhost:8008/api/user/hello
-
 GET: localhost:8008/api/user/all
 
 GET: localhost:8008/api/user?index=1
